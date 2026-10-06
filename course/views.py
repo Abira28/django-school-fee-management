@@ -4,13 +4,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from course import models
 from course.forms import CreateCourseForm, CreateFeeForm
-from school.models import UserProfile
+from school.models import UserProfile, School
 import json
 
 # ✅ Utility: Get school linked to logged-in user
 def get_user_school(request):
     if request.user.is_superuser:
-        return None
+        return School.objects.first()
+
     try:
         return request.user.userprofile.school
     except UserProfile.DoesNotExist:
@@ -52,32 +53,64 @@ def store(request):
             fees = []
 
         school = get_user_school(request)
+
         if not school and not request.user.is_superuser:
-            messages.error(request, "Your account is not linked to a school.")
+            messages.error(
+                request,
+                'Your account is not linked to a school.'
+            )
             return redirect('course.create')
 
         if course_valid.is_valid():
             if fees and isinstance(fees, list):
+
                 with transaction.atomic():
+
+                    # Create the course
                     course = course_valid.save(commit=False)
+
+                    # Attach the course to the school
                     course.school = school
+
+                    # Save the course
                     course.save()
 
+                    # Create fees
                     for fee_item in fees:
                         desc = fee_item.get('fee_desc', '').strip()
                         amount = fee_item.get('amount', 0)
+
                         if desc and amount:
-                            models.Fee.objects.create(course=course, fee_desc=desc, amount=amount)
+                            models.Fee.objects.create(
+                                course=course,
+                                fee_desc=desc,
+                                amount=amount
+                            )
 
-                    messages.success(request, 'Course created successfully')
+                    messages.success(
+                        request,
+                        'Course created successfully'
+                    )
+
                     return redirect('course.index')
-            else:
-                messages.warning(request, 'Please add at least one fee before submitting.')
-                return redirect('course.create')
-        else:
-            return render(request, 'course/create.html', {'course': course_valid, 'fee': fee_valid})
 
-    return redirect('course.create')
+            else:
+                messages.warning(
+                    request,
+                    'Please add at least one fee before submitting.'
+                )
+                return redirect('course.create')
+
+        else:
+            return render(
+                request,
+                'course/create.html',
+                {
+                    'course': course_valid,
+                    'fee': fee_valid
+                }
+            )
+
 
 # ✅ Edit course view
 def edit(request, cid):

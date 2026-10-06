@@ -55,42 +55,77 @@
 {% endblock %}
 
 {% block script %}
+
 <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Keep search enabled for student dropdown only
-        $('#id_student_id').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Search and select a student',
-            allowClear: true
-        });
+document.addEventListener("DOMContentLoaded", function () {
 
-        // Don't apply Select2 to id_course_id to preserve change event handling
+    // Student search
+   
 
-        const courseSelect = document.getElementById("id_course_id");
-        const feeInput = document.getElementById("id_total_fee");
-        const feePreview = document.getElementById("course-fee-preview");
+    // Get form elements
+    const courseSelect = document.getElementById("id_course_id");
+    const feeInput = document.getElementById("id_total_fee");
+    const feePreview = document.getElementById("course-fee-preview");
 
-        courseSelect.addEventListener("change", function () {
-            const courseId = this.value;
-            if (courseId) {
-                fetch(`/enroll/get_course_total_amount/?course_id=${courseId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const fee = parseFloat(data.data || 0);
-                        feePreview.value = `KES ${fee.toLocaleString("en-KE", { minimumFractionDigits: 2 })}`;
-                        feeInput.value = fee;
-                    })
-                    .catch(error => {
-                        console.error("Failed to load course fee:", error);
-                        feePreview.value = "KES 0.00";
-                        feeInput.value = 0;
-                    });
-            } else {
+    // Check that the elements exist
+    console.log("Course select:", courseSelect);
+    console.log("Fee input:", feeInput);
+    console.log("Fee preview:", feePreview);
+
+    // When a course/grade is selected
+    courseSelect.addEventListener("change", function () {
+
+        const courseId = this.value;
+
+        console.log("Selected course ID:", courseId);
+
+        if (!courseId) {
+            feeInput.value = "";
+            feePreview.value = "KES 0.00";
+            return;
+        }
+
+        // Get the fee automatically from Django
+        fetch(`/enroll/course-fee/${courseId}/`)
+            .then(response => {
+
+                console.log("Response status:", response.status);
+
+                if (!response.ok) {
+                    throw new Error("Could not get course fee");
+                }
+
+                return response.json();
+            })
+            .then(data => {
+
+                console.log("Fee data received:", data);
+
+                const fee = parseFloat(data.total_fee || 0);
+
+                // Automatically fill Total Fee
+                feeInput.value = fee;
+
+                // Automatically display formatted fee
+                feePreview.value = `KES ${fee.toLocaleString("en-KE", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                })}`;
+
+            })
+            .catch(error => {
+
+                console.error("Error loading course fee:", error);
+
+                feeInput.value = "";
                 feePreview.value = "KES 0.00";
-                feeInput.value = 0;
-            }
-        });
+
+            });
     });
+
+});
 </script>
+
 {% endblock %}

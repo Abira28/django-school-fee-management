@@ -18,9 +18,9 @@ class CreateEnrollForm(forms.ModelForm):
     )
 
     total_fee = forms.FloatField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
-        label='Total Fee'
-    )
+    widget=forms.TextInput(attrs={'class': 'form-control'}),
+    label='Total Fee'
+)
 
     class Meta:
         model = Enroll

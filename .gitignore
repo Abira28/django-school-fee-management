@@ -1,19 +1,19 @@
-venv
-static/vendor
-*.pyc
-__pycache__
-*.pyo
-*.pyd
-*.db
-*.sqlite3
-*.log
-*.pot
-*.mo
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
 *.py[cod]
-*.swp
-*.swo
-*.bak
-*.orig
-*.DS_Store
-*.coverage
+
+# Django
+db.sqlite3
+*.log
+
+# Environment variables
+.env
+
+# Static/vendor files
+static/vendor/
 db.sqlite3

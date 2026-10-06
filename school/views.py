@@ -4,16 +4,19 @@ from django.db.models import Sum
 from django.db.models.functions import TruncMonth
 from django.shortcuts import render
 
+from school.models import UserProfile, School
 from enrollment.models import Enroll
 from payment.models import Payment, Action
 from student.models import Student
 
 
 def get_user_school(request):
-    # Return the user's school if available, else None
+    if request.user.is_superuser:
+        return School.objects.first()
+
     try:
         return request.user.userprofile.school
-    except AttributeError:
+    except UserProfile.DoesNotExist:
         return None
 
 

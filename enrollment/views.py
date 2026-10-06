@@ -92,3 +92,16 @@ def delete(request, eid):
     else:
         messages.error(request, 'Invalid request')
     return redirect('enroll.index')
+
+def get_course_fee(request, course_id):
+    try:
+        course = Course.objects.get(id=course_id)
+
+        return JsonResponse({
+            'total_fee': course.total_amount
+        })
+
+    except Course.DoesNotExist:
+        return JsonResponse({
+            'total_fee': 0
+        })
