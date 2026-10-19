@@ -1,101 +1,161 @@
-<div id="top"></div>
+# Falconn Academy – School Management System
 
-<h3 align="center">Django Fee MS</h3>
+A Django-based web application designed to help manage student records, courses, enrollments, school fees, payments, and administrative activities for Falconn Academy.
 
-  <p align="center">
-    Django school fee system.
-  </p>
-  
-  ![homepage_screenshot](https://raw.githubusercontent.com/lynchzival/Django-SchoolMSFee/main/screenshot/Screenshot%202022-06-29%20at%2021-17-24%20SCHOOL%20-%20Dashboard.png)
-</div>
+## Overview
 
-### Built With
+Falconn Academy is a school management system built with Python and Django. It provides a centralized platform for managing essential school operations and organizing student and financial records.
 
-* [Django](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com) ([SBAdmin2](https://startbootstrap.com/theme/sb-admin-2))
-* [JQuery](https://jquery.com)
-* [Postgresql](https://www.postgresql.org/)
+## Features
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+- **Student Management:** Add, view, update, and manage student records.
+- **Course Management:** Manage classes or courses and their associated fees.
+- **Enrollment Management:** Enroll students and maintain enrollment records.
+- **Fee & Payment Management:** Track school fees, record payments, and monitor payment information.
+- **User Authentication:** Support secure login and access to authorized system features.
+- **Dashboard & Reports:** View key school information and relevant statistics.
+- **Testing & Maintenance:** Identify and resolve application issues as development progresses.
 
+## Technologies Used
 
+- **Python** – Core programming language
+- **Django** – Web application framework
+- **HTML5** – Page structure
+- **CSS3** – Styling
+- **JavaScript / jQuery** – Interactive functionality
+- **Bootstrap** – Responsive user interface
+- **SQLite or PostgreSQL** – Database, depending on the configured environment
 
-<!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+Follow these instructions to set up the project locally.
 
 ### Prerequisites
 
-* [Download Python](https://www.python.org/)
-* [Download Postgresql](https://www.postgresql.org/download/)
+Install the following:
+
+- [Python](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads/)
 
 ### Installation
- 
-1. Clone the repo
 
-   ```sh
-   git clone https://github.com/lynchzival/Django-SchoolFee.git
-   ```
-   
-2. Extract compressed vendor folder in static folder
-3. Create venv inside the project folder
+**1. Clone the repository**
 
-   ```sh
-   python -m venv .\venv
-   ```
-4. Activate your venv
+```bash
+git clone https://github.com/Abira28/django-school-fee-management.git
+```
 
-   ```sh
-   venv\Scripts\activate
-   ```
-   You might run into "execution of scripts is disabled" error, in that case visit this [stackoverflow question](https://stackoverflow.com/questions/4037939/powershell-says-execution-of-scripts-is-disabled-on-this-system) for a fix.
+**2. Navigate to the project directory**
 
-5. Install packages
+```bash
+cd django-school-fee-management
+```
 
-   ```sh
-   pip install -r requirements.txt
-   ```
- 
-6. Config database in setting.py located in school folder
+**3. Create a virtual environment**
 
-7. Generate secret key
+```bash
+python -m venv .venv
+```
 
-   ```sh
-   python
-   ```
-   ```sh
-   from django.core.management.utils import get_random_secret_key
-   print(get_random_secret_key())
-   ```
-   Assign the value to SECRET_KEY = '' variable inside setting.py file
-   
-8. Migration
+**4. Activate the virtual environment**
 
-   ```sh
-   python manage.py migrate
-   ```
-   
-9. Create superuser
+On Windows PowerShell:
 
-   ```sh
-   python manage.py createsuperuser
-   ```
-   
-10. Run server
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-    ```sh
-    python manage.py runserver
-    ```
+**5. Install the required packages**
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+If the repository contains a `requirements.txt` file, run:
 
-<!-- FEATURES -->
-## Features
+```bash
+pip install -r requirements.txt
+```
 
-- Profile Management
-- Payment Report
-- Payment Transaction Activity Log 
-- Payment Receipt
+**6. Configure the database and environment**
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Check the Django settings and configure the database and required environment variables for your local setup. Do not publish secret keys, passwords, or other sensitive configuration details.
+
+**7. Apply database migrations**
+
+```bash
+python manage.py migrate
+```
+
+**8. Create an administrator account**
+
+```bash
+python manage.py createsuperuser
+```
+
+Follow the prompts to create your account.
+
+**9. Start the development server**
+
+```bash
+python manage.py runserver
+```
+
+Open the local development address in your browser:
+
+http://127.0.0.1:8000/
+
+*Note: These instructions assume the project contains `manage.py` in its root directory. Adjust any step if your repository uses a different structure.*
+
+## Screenshots
+
+Screenshots of the application will be added here to demonstrate the dashboard and main system features.
+
+Suggested screenshots:
+
+- Dashboard
+- Student Management
+- Course Management
+- Enrollment Management
+- Fee & Payment Management
+
+## Testing
+
+Test the main application workflows, including student registration, course management, enrollment, fee calculations, payment records, and authentication.
+
+Run the Django system checks with:
+
+```bash
+python manage.py check
+```
+
+## Deployment
+
+Deployment to a production hosting platform is planned. Production setup should include appropriate environment variables, database configuration, static file handling, allowed hosts, and HTTPS.
+
+## Project Roadmap
+
+- [x] Student Management
+- [x] Course Management
+- [x] Enrollment Management
+- [x] Fee & Payment Management
+- [ ] User & Authentication Management
+- [x] Dashboard & Reports
+- [ ] Testing & Bug Fixes
+- [ ] Deployment
+- [ ] Add application screenshots
+
+*Update the roadmap checkboxes to reflect the actual implementation and testing status before publishing.*
+
+## Future Improvements
+
+- Improve reporting and fee tracking.
+- Add additional validation and automated tests.
+- Enhance the user interface and accessibility.
+- Deploy the application for online access.
+
+## Author
+
+**Abira28**
+
+GitHub: https://github.com/Abira28
+
+---
+
+*Falconn Academy – School Management System is an ongoing project developed for school administration and fee management.*
