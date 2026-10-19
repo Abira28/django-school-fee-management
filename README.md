@@ -159,3 +159,18 @@ GitHub: https://github.com/Abira28
 ---
 
 *Falconn Academy – School Management System is an ongoing project developed for school administration and fee management.*
+
+
+## Screenshots
+
+### Dashboard
+![Dashboard](screenshot/dashboard.png)
+
+### Student Management
+![Students](screenshot/students.png)
+
+### Enrollment Management
+![Enrollments](screenshot/enrollments.png)
+
+### Payment Management
+![Payments](screenshot/payments.png)
