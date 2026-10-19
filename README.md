@@ -174,3 +174,50 @@ GitHub: https://github.com/Abira28
 
 ### Payment Management
 ![Payment Management](screenshot/Payment.png.png)
+
+
+
+## Technologies Used
+
+- **Python** – Main programming language
+- **Django** – Web application framework
+- **HTML5** – Page structure
+- **CSS3** – Styling
+- **JavaScript** – Client-side interactions
+- **Bootstrap** – Responsive interface styling
+- **SQLite** – Local development database
+- **Git and GitHub** – Version control and source code hosting
+
+
+
+## Testing
+
+Run Django's system checks:
+
+```bash
+python manage.py check
+```
+
+Run the automated tests:
+
+```bash
+python manage.py test
+```
+
+## Future Improvements
+
+- Add search, filtering, and pagination for student records.
+- Improve payment receipts and financial reports.
+- Add role-based permissions for administrators and staff.
+- Improve form validation and error handling.
+- Deploy the application to a production hosting platform.
+
+## Project Status
+
+This project is under active development. Features and improvements may be added over time.
+
+## Author
+
+**Fredrick Abira**
+
+GitHub: [@Abira28](https://github.com/Abira28)
