@@ -164,13 +164,13 @@ GitHub: https://github.com/Abira28
 ## Screenshots
 
 ### Dashboard
-![Dashboard](screenshot/dashboard.png)
+![Falconn Academy Dashboard](screenshot/Dashboard.png.png)
 
 ### Student Management
-![Students](screenshot/students.png)
+![Student Management](screenshot/students.png.png)
 
 ### Enrollment Management
-![Enrollments](screenshot/enrollments.png)
+![Enrollment Management](screenshot/Enrollment.png.png)
 
 ### Payment Management
-![Payments](screenshot/payments.png)
+![Payment Management](screenshot/Payment.png.png)
